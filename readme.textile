@@ -1,3 +1,13 @@
 h1. Corrupt
 
 p. A simple game based on one of the puzzles from the "Dreamcatcher":https://dreamcatcherpuzzle.xyz puzzlehunt.
+
+h2. Rules
+
+p. The number in each cell represents the number of corrupt neighbours that that cell has both orthogonally and diagonally.
+Click once to mark a cell as corrupt (white).
+Click again to mark it as okay (black).
+
+h2. Play
+
+p. Play it "here":https://user4574.github.io/corrupt.
