@@ -93,14 +93,14 @@ function mousePressed() {
     row = Math.floor(mouseY / scale);
 
   switch(mouseButton) {
-    case LEFT:
-      grid[row][col]['clicked'] += 1;
+    case CENTER:
+      grid[row][col]['clicked'] = 0;
       break;
     case RIGHT:
       grid[row][col]['clicked'] -= 1;
       break;
     default:
-      grid[row][col]['clicked'] = 0;
+      grid[row][col]['clicked'] += 1;
   }
 
   if(grid[row][col]['clicked'] == 3)
