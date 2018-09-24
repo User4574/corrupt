@@ -104,21 +104,24 @@ function mousePressed() {
     col = Math.floor(mouseX / scale),
     row = Math.floor(mouseY / scale);
 
-  switch(mouseButton) {
-    case CENTER:
-      grid[row][col]['clicked'] = 0;
-      break;
-    case RIGHT:
-      grid[row][col]['clicked'] -= 1;
-      break;
-    default:
-      grid[row][col]['clicked'] += 1;
-  }
+  if( col > -1 && col < cols &&
+      row > -1 && row < rows ) {
+    switch(mouseButton) {
+      case CENTER:
+        grid[row][col]['clicked'] = 0;
+        break;
+      case RIGHT:
+        grid[row][col]['clicked'] -= 1;
+        break;
+      default:
+        grid[row][col]['clicked'] += 1;
+    }
 
-  if(grid[row][col]['clicked'] == 3)
-    grid[row][col]['clicked'] = 0;
-  if(grid[row][col]['clicked'] == -1)
-    grid[row][col]['clicked'] = 2;
+    if(grid[row][col]['clicked'] == 3)
+      grid[row][col]['clicked'] = 0;
+    if(grid[row][col]['clicked'] == -1)
+      grid[row][col]['clicked'] = 2;
+  }
 
   return false;
 }
