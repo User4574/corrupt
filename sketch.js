@@ -16,7 +16,7 @@ function setup() {
     grid[row] = [];
     for(let col = 0; col < cols; col++)
       grid[row][col] = {
-        'corrupt': (random(2) < 0.7),
+        'corrupt': (random(2) < 1),
         'clicked': 0
       };
   }
