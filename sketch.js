@@ -1,4 +1,6 @@
 let 
+  cursorrow = -1,
+  cursorcol = -1,
   rows = 15,
   cols = 15,
   scale = 25,
@@ -57,6 +59,16 @@ function draw() {
           fill(0);
           text(nsum(row, col), (col+0.5)*scale, (row+0.5)*scale);
       }
+      if (cursorrow == row && cursorcol == col) {
+        noFill();
+        strokeWeight(2);
+        if(grid[row][col]['clicked'] == 1)
+          stroke(0, 0, 255);
+        else
+          stroke(0, 255, 0);
+        ellipse((col+0.5)*scale, (row+0.5)*scale, scale-4);
+        noStroke();
+      }
     }
   }
 
@@ -112,13 +124,41 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  switch(key) {
-    case 'R':
+  switch(keyCode) {
+    case 82: //r
       reticule = !reticule;
       break;
-    case 'E':
+    case 69: //e
       errors = !errors;
+      break;
+    case 37: //Left
+      cursorcol -= 1;
+      break;
+    case 38: //Up
+      cursorrow -= 1;
+      break;
+    case 39: //Right
+      cursorcol += 1;
+      break;
+    case 40: //Down
+      cursorrow += 1;
+      break;
+    case 88: //x
+      grid[cursorrow][cursorcol]['clicked'] -= 1;
+      break;
+    case 90: //z
+      grid[cursorrow][cursorcol]['clicked'] += 1;
   }
+
+  if (cursorcol < 0)          cursorcol = 0;
+  if (cursorcol > (cols - 1)) cursorcol = (cols - 1);
+  if (cursorrow < 0)          cursorrow = 0;
+  if (cursorrow > (rows - 1)) cursorrow = (rows - 1);
+
+  if(grid[cursorrow][cursorcol]['clicked'] == 3)
+    grid[cursorrow][cursorcol]['clicked'] = 0;
+  if(grid[cursorrow][cursorcol]['clicked'] == -1)
+    grid[cursorrow][cursorcol]['clicked'] = 2;
 }
 
 function nsum(r, c) {
